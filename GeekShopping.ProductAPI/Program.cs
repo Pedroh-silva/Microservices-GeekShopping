@@ -1,3 +1,7 @@
+using GeekShopping.ProductAPI.Model;
+using GeekShopping.ProductAPI.Model.Context;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -6,6 +10,7 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.AddDbContext<SQLContext>(options => options.UseSqlServer("Server=localhost;Database=geek_shopping_product_api;Trusted_Connection=True;"));
 
 var app = builder.Build();
 
