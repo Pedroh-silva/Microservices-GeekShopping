@@ -24,10 +24,6 @@ namespace GeekShopping.ProductAPI.Model
 
         [StringLength(300)]
         public string? ImageURL { get; set; }
-        public Product(string name, decimal price)
-        {
-            Name = name;
-            Price = price;
-        }
+
     }
 }
