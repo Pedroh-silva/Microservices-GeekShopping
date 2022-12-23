@@ -1,0 +1,33 @@
+﻿.title{
+   display:flex;
+   align-items:center;
+   justify-content:space-between;
+}
+
+.listOfProducts {
+    display: flex;
+    justify-content: center;
+}
+table{
+    margin:20px;
+    width:90%;
+    box-shadow:1px 1px 10px #000000;
+}
+table thead tr th:last-child {
+        text-align: center;
+}
+table, thead, tbody, tr, th, td {
+    border-radius: 20px;
+}
+    table thead tr {
+        border-bottom: 2px solid #808080;
+    }
+    table th, td {
+        padding:10px 10px 10px 10px;
+    }
+table td{
+    border-bottom:1px solid #808080;
+}
+    table tbody tr:last-child td {
+        border: none;
+    }
