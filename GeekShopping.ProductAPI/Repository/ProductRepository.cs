@@ -17,19 +17,19 @@ namespace GeekShopping.ProductAPI.Repository
         }
         public async Task<IEnumerable<ProductDTO>> FindAll()
         {
-            List<Product> products = await _context.Products!.ToListAsync();
+            List<Product> products = await _context.Products.ToListAsync();
             return _mapper.Map<List<ProductDTO>>(products);
         }
 
         public async Task<ProductDTO> FindById(int id)
         {
-            Product? product = await _context.Products!.FirstOrDefaultAsync(p => p.Id == id);
+            Product product = await _context.Products.FirstOrDefaultAsync(p => p.Id == id) ?? new Product();
             return _mapper.Map<ProductDTO>(product);
         }
         public async Task<ProductDTO> Create(ProductDTO dto)
         {
             Product product = _mapper.Map<Product>(dto);
-            _context.Products!.Add(product);
+            _context.Products.Add(product);
             await _context.SaveChangesAsync();
             return _mapper.Map<ProductDTO>(product);
         }
@@ -37,7 +37,7 @@ namespace GeekShopping.ProductAPI.Repository
         public async Task<ProductDTO> Update(ProductDTO dto)
         {
             Product product = _mapper.Map<Product>(dto);
-            _context.Products!.Update(product);
+            _context.Products.Update(product);
             await _context.SaveChangesAsync();
             return _mapper.Map<ProductDTO>(product);
         }
@@ -46,11 +46,8 @@ namespace GeekShopping.ProductAPI.Repository
         {
             try
             {
-                Product? product = await _context.Products!.Where(p => p.Id == id).FirstOrDefaultAsync();
-                if(product == null)
-                {
-                    return false;
-                }
+                Product? product = await _context.Products.Where(p => p.Id == id).FirstOrDefaultAsync() ?? new Product();
+                if(product.Id <= 0)return false;
                 _context.Products!.Remove(product);
                 await _context.SaveChangesAsync();
                 return true;
