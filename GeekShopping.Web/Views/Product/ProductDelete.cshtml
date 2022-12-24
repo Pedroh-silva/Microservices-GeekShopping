@@ -1,35 +1,36 @@
 ﻿@model GeekShopping.Web.Models.ViewModel.ProductViewModel
 <link rel="stylesheet" href="~/css/ProductCreate.css" />
-<h1>Criar novo produto</h1>
+<h1>Remover produto</h1>
 <hr />
-<form asp-action="ProductCreate">
+<form asp-action="ProductDelete">
 	@Html.AntiForgeryToken()
+	<input asp-for="Id" value="@Model.Id" hidden />
 	<div asp-validation-summary="All" class="text-danger"></div>
 	<div class="form-data">
 		<div>
 			<label asp-for="Name"></label>
-			<input asp-for="Name" />
+			<input disabled asp-for="Name" value="@Model.Name"/>
 		</div>
 		<div>
 			<label asp-for="Price"></label>
-			<input asp-for="Price" />
+			<input disabled asp-for="Price" value="@Model.Price" />
 		</div>
 		<div>
 			<label asp-for="Description"></label>
-			<textarea asp-for="Description"></textarea>
+			<textarea disabled asp-for="Description">@Model.Description</textarea>
 		</div>
 		<div>
 			<label asp-for="CategoryName"></label>
-			<input asp-for="CategoryName" />
+			<input disabled asp-for="CategoryName" value="@Model.CategoryName"/>
 		</div>
 		<div>
 			<label asp-for="ImageURL"></label>
-			<input asp-for="ImageURL" />
+			<input disabled type="url" asp-for="ImageURL" value="@Model.ImageURL" />
 		</div>
 	</div>
 	<div class="actions">
 		<a class="btn btn-primary" asp-action="ProductIndex">Back to list</a>
-		<button class="btn btn-success" type="submit" value="Create">Create</button>
+		<button class="btn btn-danger" type="submit" value="Delete">Delete</button>
 	</div>
 </form>
 @section Scripts{
