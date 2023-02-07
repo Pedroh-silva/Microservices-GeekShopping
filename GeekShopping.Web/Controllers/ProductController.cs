@@ -17,11 +17,9 @@ namespace GeekShopping.Web.Controllers
         {
             _productService = productService ?? throw new ArgumentNullException(nameof(productService));
         }
-		[Authorize]
         public async Task<IActionResult> ProductIndex()
         {
-            var token = await HttpContext.GetTokenAsync("access_token");
-            var products = await _productService.FindalAllProducts(token);
+            var products = await _productService.FindAllProducts("");
             return View(products);
         }
 		public IActionResult ProductCreate()
