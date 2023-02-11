@@ -123,7 +123,7 @@ namespace GeekShopping.CartAPI.Repository
                     cart.CartDetails.FirstOrDefault().Product = null;
                     cart.CartDetails.FirstOrDefault().Count += cartDetail.Count;
                     cart.CartDetails.FirstOrDefault().Id= cartDetail.Id;
-                    cart.CartDetails.FirstOrDefault().CartHeader.Id = cartDetail.CartHeaderId;
+                    cart.CartDetails.FirstOrDefault().CartHeaderId = cartDetail.CartHeaderId;
                     _context.CartDetails.Update(cart.CartDetails.FirstOrDefault());
                     await _context.SaveChangesAsync();
                 }

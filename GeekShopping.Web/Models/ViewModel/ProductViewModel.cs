@@ -1,7 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
-using System.Globalization;
-
-namespace GeekShopping.Web.Models.ViewModel
+﻿namespace GeekShopping.Web.Models.ViewModel
 {
 	public class ProductViewModel
 	{
