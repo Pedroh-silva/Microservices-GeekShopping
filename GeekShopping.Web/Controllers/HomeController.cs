@@ -35,6 +35,7 @@ namespace GeekShopping.Web.Controllers
         }
         [HttpPost]
         [ActionName("Details")]
+        [ValidateAntiForgeryToken]
         [Authorize]
         public async Task<IActionResult> DetailsPost(ProductModel model)
         {

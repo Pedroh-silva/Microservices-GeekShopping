@@ -1,0 +1,105 @@
+﻿@model GeekShopping.Web.Models.ViewModel.CartViewModel
+<link rel="stylesheet" href="~/css/CartIndex.css" />
+<h4>Carrinho de compras <i class="fa fa-shopping-cart"></i></h4>
+<hr />
+@if (Model.CartHeader != null && Model.CartDetails.Count() > 0)
+{
+	<div class="Fade">
+		<div class="Modal">
+			<button id="closeModal" type="button"><i class="fa fa-close"></i></button>
+			<div class="Modal-Content">
+				<input id="productId" value="" hidden>
+				<input id="productCurrentQuantity" value="" hidden>
+				<h6>Escolha a quantidade</h6>
+				<button class="option" value="1" type="button">1 unidade</button>
+				<button class="option" value="2" type="button">2 unidades</button>
+				<button class="option" value="3" ype="button">3 unidades</button>
+				<button class="option" value="4" type="button">4 unidades</button>
+				<button class="option" value="5" type="button">5 unidades</button>
+				<br>
+				<p>Ou, digite a quantidade desejada</p>
+				<input id="quantityUpdate" min="1" type="number" step="1">
+				<br>
+				<button type="button" class="btn btn-success sendUpdate">Enviar</button>
+			</div>
+		</div>
+	</div>
+	<form method="post">
+		<section>
+			@Html.AntiForgeryToken()
+			<div class="cart">
+				<input asp-for="CartHeader.UserId" hidden />
+				<input asp-for="CartHeader.Id" hidden />
+				<div>
+				</div>
+				<div class="cart-body">
+					<div>
+						@foreach (var item in Model.CartDetails.OrderBy(x => x.Product.Name))
+						{
+
+							<div class="product">
+								<div class="product-trash">
+									<button itemid="@item.Id" type="button" class="RemoveProduct">
+										<i class="fa fa-close"></i>
+									</button>
+								</div>
+								<div class="image-description-wrapper">
+									<div class="product-image">
+										<a asp-controller="Home" asp-action="Details" asp-route-id="@item.Product.Id">
+											<img src="@item.Product.ImageURL" width="100%" />
+										</a>
+									</div>
+									<div class="product-description">
+										<a asp-controller="Home" asp-action="Details" asp-route-id="@item.Product.Id">
+											<h6>@item.Product.Name</h6>
+											<div class="description">
+												@Html.Raw(item.Product.Description)
+											</div>
+										</a>
+									</div>
+								</div>
+								<hr>
+								<div id="product-total" class="product-total">
+									<div id="product-count" class="product-count">
+										<div itemid="@item.ProductId" class="unit">
+											@item.Count un.
+											<i class="fa fa-angle-down"></i>
+											<input  id="currentQuantity" value="@item.Count" hidden>
+										</div>
+									</div>
+									<h6><span>Total: </span>@string.Format("{0:c}", item.Count * item.Product.Price)</h6>
+								</div>
+							</div>
+							<br />
+
+						}
+					</div>
+				</div>
+			</div>
+			<div class="coupon-checkout">
+				<h6>Aplicar cupom</h6>
+				<div>
+					<input asp-for="CartHeader.CouponCode" />
+					<button type="submit" asp-action="applyCoupon" class="btn btn-success">Apply</button>
+				</div>
+				<br>
+				<div>
+					<p>Valor total da compra: <span id="purchaseAmount">@string.Format("{0:c}",Model.CartHeader.PurchaseAmount)</span></p>
+					<a asp-action="Checkout" class="btn btn-success form-control">
+						<span>Checkout</span>
+					</a>
+				</div>
+			</div>
+		</section>
+	</form>
+	@section Scripts{
+	<script src="@Url.Content("~/js/CartIndex.js")" type="text/javascript"></script>
+	}
+}
+else
+{
+	<div class="empty-cart">
+		<h3>Seu carrinho está vazio, que tal adicionar alguns produtos?</h3>
+		<a class="btn btn-primary" asp-controller="Home" asp-action="Index">Ir para loja</a>
+	</div>
+}

@@ -1,6 +1,7 @@
 ﻿@model GeekShopping.Web.Models.ProductModel
 
 <form method="post">
+    @Html.AntiForgeryToken()
     <input asp-for="Id" hidden />
     <div class="pt-4">
         <div class="card container" style="border:1px solid #808080;">
@@ -29,7 +30,7 @@
                                 </div>
                             </div>
                             <div class="row px-4">
-                                <input asp-for="Count" class="form-control" />
+                                <input min="1" asp-for="Count" class="form-control" />
                                 <span asp-validation-for="Count" class="text-danger"></span>
                             </div>
                         </div>
@@ -38,7 +39,7 @@
             </div>
             <div class="card-footer row">
                 <div class="col-12 col-md-6 pb-1">
-                    <a class="btn btn-success btn-square form-control btn-lg" style="height:50px;">
+                    <a asp-action="Index" class="btn btn-success btn-square form-control btn-lg" style="height:50px;">
                         Back to List
                     </a>
                 </div>
