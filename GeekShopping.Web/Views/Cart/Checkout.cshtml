@@ -1,0 +1,110 @@
+﻿@model GeekShopping.Web.Models.ViewModel.CartViewModel
+
+<link rel="stylesheet" href="~/css/Checkout.css" />
+@if (Model != null && Model.CartDetails.Count() > 0)
+{
+	<form method="post">
+		<input asp-for="CartHeader.UserId" hidden />
+		<input asp-for="CartHeader.Id" hidden />
+		<input asp-for="CartHeader.CouponCode" hidden />
+		<input asp-for="CartHeader.DiscountAmount" hidden />
+		<input asp-for="CartHeader.PurchaseAmount" hidden />
+		<section id="main">
+			<div class="box">
+				<h4>Informações do cliente</h4>
+				<hr>
+				<div id="Name">
+					<div>
+						<div class="inputGroup">
+							<input asp-for="CartHeader.FirstName" type="text" required="" autocomplete="off">
+							<label for="name">Primeiro Nome</label>
+						</div>
+					</div>
+					<div>
+						<div class="inputGroup">
+							<input asp-for="CartHeader.LastName" type="text" required="" autocomplete="off">
+							<label for="name">Último Nome</label>
+						</div>
+					</div>
+				</div>
+				<div>
+					<div style="margin-bottom:30px;">
+						<div class="inputGroup email">
+							<input asp-for="CartHeader.Email" type="email" required="" placeholder="seuemail@exemplo.com" autocomplete="off">
+							<label for="name"><i class="fa fa-envelope-o"></i> E-mail</label>
+						</div>
+					</div>
+					<div class="inputGroup">
+						<input id="phone" asp-for="CartHeader.Phone" placeholder="(00) 00000-0000" required="" autocomplete="off" type="tel">
+						<label for="name"><i class="fa fa-phone"></i> Celular</label>
+					</div>
+				</div>
+				<br>
+				<h4>Pagamento</h4>
+				<hr>
+				<input type="radio" checked><span style="vertical-align:text-bottom"> Cartão de crédito</span>
+				<div class="inputGroup creditCard">
+					<input id="cardNumber" asp-for="CartHeader.CardNumber" type="text" placeholder="0000 0000 0000 0000" required="" autocomplete="off">
+					<label for="name"><i class="fa fa-credit-card "></i> Número do cartão</label>
+				</div>
+				<div id="expiryCVV">
+					<div class="inputGroup cvv">
+						<input id="CVV" asp-for="CartHeader.CVV" type="text" placeholder="123" required="" autocomplete="off">
+						<label for="name"> CVV</label>
+					</div>
+					<div class="inputGroup cvv">
+						<input id="expiry" asp-for="CartHeader.ExpiryMonthYear" type="text" required="" placeholder="MM/YY" autocomplete="off">
+						<label for="name"> Data de expiração</label>
+					</div>
+				</div>
+			</div>
+			<div class="box orderSummary">
+				<div>
+					<h4>Revisão do pedido</h4>
+					<hr>
+
+					@foreach (var item in Model.CartDetails.OrderBy(p => p.Product.Name))
+					{
+						<div class="product">
+							<div id="imgAndTitle">
+								<div class="imgWrapper">
+									<img src="@item.Product.ImageURL" width="100%">
+								</div>
+								<div id="productTitle">
+									<p>@item.Product.Name</p>
+								</div>
+							</div>
+							<div id="productPrice">
+								<div>
+									<p>@item.Count un.  </p>
+								</div>
+								<div>
+									<p>@string.Format("{0:c}", item.Count * item.Product.Price)</p>
+								</div>
+							</div>
+						</div>
+					}
+					<div>
+						<div id="subtotal">
+							<p>Subtotal: </p><p>@string.Format("{0:c}",(Model.CartHeader.PurchaseAmount + Model.CartHeader.DiscountAmount))</p>
+						</div>
+						<div id="discount">
+							<p>Desconto: </p> <p>- @string.Format("{0:c}",Model.CartHeader.DiscountAmount)</p>
+						</div>
+						<div id="total">
+							<p>Total: </p> <p>@string.Format("{0:c}",Model.CartHeader.PurchaseAmount)</p>
+						</div>
+					</div>
+					<br>
+					<button type="submit" class="btn btn-success form-control">
+						<span>Fazer pedido</span>
+					</button>
+				</div>
+			</div>
+		</section>
+	</form>
+	@section Scripts{
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.0/jquery.mask.js"></script>
+	<script src="@Url.Content("~/js/Checkout.js")" type="text/javascript"></script>
+	}
+}

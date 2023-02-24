@@ -37,13 +37,34 @@ namespace GeekShopping.CartAPI.Controllers
             if (cart == null) return NotFound();
             return Ok(cart);
         }
-        [HttpDelete("remove-cart/{id}")]
+		[HttpPut("update-quantity")]
+		public async Task<ActionResult<CartDTO>> UpdateQuantity(CartDetailDTO dto)
+		{
+			var status = await _repository.UpdateQuantity(dto);
+			if (!status) return BadRequest();
+			return Ok(status);
+		}
+		[HttpDelete("remove-cart/{id}")]
         public async Task<ActionResult<CartDTO>> RemoveCart(int id)
         {
             var status = await _repository.RemoveFromCart(id);
             if (!status) return BadRequest();
             return Ok(status);
         }
+		[HttpPost("apply-coupon")]
+		public async Task<ActionResult<CartDTO>> ApplyCoupon(CartDTO dto)
+		{
+			var status = await _repository.ApllyCoupon(dto.CartHeader.UserId, dto.CartHeader.CouponCode);
+			if (!status) return NotFound();
+			return Ok(status);
+		}
+        [HttpDelete("remove-coupon/{userId}")]
+		public async Task<ActionResult<CartDTO>> RemoveCoupon(string userId)
+		{
+			var status = await _repository.RemoveCoupon(userId);
+			if (!status) return NotFound();
+			return Ok(status);
+		}
 
-    }
+	}
 }

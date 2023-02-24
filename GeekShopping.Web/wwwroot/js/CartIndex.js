@@ -2,12 +2,12 @@
     var id = $(this).attr('itemid');
     $.ajax({
         url: '/Cart/Remove/' + id,
-        type: 'GET',
+        type: 'DELETE',
         success: function () {
             location.reload()
         },
-        error: function () {
-            alert("Ocorreu um erro ao remover o produto")
+        error: function (error) {
+            alert(error.responseJSON.message);
         }
     })
 });
@@ -25,11 +25,46 @@ function SendQuantityUpdate(productId, quantity) {
         success: function () {
             location.reload();
         },
-        error: function () {
-            alert("Ocorreu um erro ao alterar o produto.");
+        error: function (error) {
+            alert(error.responseJSON.message);
         }
     });
 }
+
+$("#applyCoupon").on('click', function () {
+    var formData = $('form').serialize();
+    $.ajax({
+        type: 'POST',
+        url: '/Cart/ApplyCoupon',
+        data: formData,
+        beforeSend: function () {
+            $(".fa-mail-forward").hide();
+            $(".Coupon-loader").show();
+        },
+        success: function () {
+            location.reload();
+        },
+        error: function (error) {
+            $(".fa-mail-forward").show();
+            $(".feedbackCoupon").html(error.responseJSON.message);
+        },
+        complete: function () {
+            $(".Coupon-loader").hide();
+        }
+    });
+});
+$("#removeCoupon").on('click', function () {
+    $.ajax({
+        type: 'DELETE',
+        url: '/Cart/RemoveCoupon',
+        success: function () {
+            location.reload();
+        },
+        error: function (error) {
+            alert(error.responseJSON.message);
+        }
+    });
+});
 
 $(".Modal .option").on('click', function () {
     var value = $(this).val();

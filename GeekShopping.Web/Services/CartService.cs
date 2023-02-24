@@ -35,21 +35,34 @@ namespace GeekShopping.Web.Services
             if (response.IsSuccessStatusCode) return await response.ReadContentAs<CartViewModel>();
             else throw new Exception("Something went wrong calling API");
         }
-        public async Task<bool> RemoveFromCart(int cartId, string token)
+		public async Task<bool> UpdateQuantity(CartDetailViewModel model, string token)
+		{
+			_client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+			var response = await _client.PutAsJsonAsync($"{basePath}/update-quantity/", model);
+			if (response.IsSuccessStatusCode) return await response.ReadContentAs<bool>();
+			else throw new Exception("Something went wrong calling API");
+		}
+		public async Task<bool> RemoveFromCart(int cartId, string token)
         {
             _client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
             var response = await _client.DeleteAsync($"{basePath}/remove-cart/{cartId}");
             if (response.IsSuccessStatusCode) return await response.ReadContentAs<bool>();
             else throw new Exception("Something went wrong calling API");
         }
-        public async Task<bool> AppyCoupon(CartViewModel cart, string couponCode, string token)
+        public async Task<bool> ApplyCoupon(CartViewModel model,  string token)
         {
-            throw new NotImplementedException();
-        }
+			_client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+			var response = await _client.PostAsJsonAsync($"{basePath}/apply-coupon", model);
+			if (response.IsSuccessStatusCode) return await response.ReadContentAs<bool>();
+			else throw new Exception("Something went wrong calling API");
+		}
         public async Task<bool> RemoveCoupon(string userId, string token)
         {
-            throw new NotImplementedException();
-        }
+			_client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+			var response = await _client.DeleteAsync($"{basePath}/remove-coupon/{userId}");
+			if (response.IsSuccessStatusCode) return await response.ReadContentAs<bool>();
+			else throw new Exception("Something went wrong calling API");
+		}
         public async Task<bool> ClearCart(string userId, string token)
         {
             throw new NotImplementedException();

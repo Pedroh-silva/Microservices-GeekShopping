@@ -13,7 +13,7 @@
 				<h6>Escolha a quantidade</h6>
 				<button class="option" value="1" type="button">1 unidade</button>
 				<button class="option" value="2" type="button">2 unidades</button>
-				<button class="option" value="3" ype="button">3 unidades</button>
+				<button class="option" value="3" type="button">3 unidades</button>
 				<button class="option" value="4" type="button">4 unidades</button>
 				<button class="option" value="5" type="button">5 unidades</button>
 				<br>
@@ -24,7 +24,7 @@
 			</div>
 		</div>
 	</div>
-	<form method="post">
+	<form>
 		<section>
 			@Html.AntiForgeryToken()
 			<div class="cart">
@@ -64,7 +64,7 @@
 										<div itemid="@item.ProductId" class="unit">
 											@item.Count un.
 											<i class="fa fa-angle-down"></i>
-											<input  id="currentQuantity" value="@item.Count" hidden>
+											<input id="currentQuantity" value="@item.Count" hidden>
 										</div>
 									</div>
 									<h6><span>Total: </span>@string.Format("{0:c}", item.Count * item.Product.Price)</h6>
@@ -77,14 +77,60 @@
 				</div>
 			</div>
 			<div class="coupon-checkout">
-				<h6>Aplicar cupom</h6>
-				<div>
-					<input asp-for="CartHeader.CouponCode" />
-					<button type="submit" asp-action="applyCoupon" class="btn btn-success">Apply</button>
-				</div>
-				<br>
-				<div>
-					<p>Valor total da compra: <span id="purchaseAmount">@string.Format("{0:c}",Model.CartHeader.PurchaseAmount)</span></p>
+				@if (string.IsNullOrEmpty(Model.CartHeader.CouponCode))
+				{
+
+					<h6>Aplicar cupom</h6>
+					<div id="couponAndButton">
+						<input asp-for="CartHeader.CouponCode" />
+						<button type="button" id="applyCoupon" class=" apply">
+							<div class="Coupon-loader">
+
+							</div>
+							<i class="fa fa-mail-forward"></i>
+							</button>
+					</div>
+					<span class="feedbackCoupon text-danger"></span>
+					<br>
+
+				}
+				else
+				{
+					<h6>Aplicar Cupom</h6>
+					<div id="couponAndButton">
+						<input asp-for="CartHeader.CouponCode" disabled />
+						<button type="button" id="removeCoupon" class=" apply"><i class="fa fa-trash"></i></button>
+					</div>
+					<span class="feedbackCoupon text-success">Cupom Aplicado!</span>
+					<br>
+
+				}
+				<div id="totalLayout">
+					
+					@if(Model.CartHeader.DiscountAmount > 0)
+					{
+						<div id="subtotal">
+							<p>Subtotal: </p><p>@string.Format("{0:c}",(Model.CartHeader.PurchaseAmount + Model.CartHeader.DiscountAmount))</p>
+						</div>
+						<div id="discount">
+							<p>Desconto:  </p> <p> - @string.Format("{0:c}",Model.CartHeader.DiscountAmount)</p>
+						</div>
+						<div id="total">
+							<p>Total: </p> <p>@string.Format("{0:c}",Model.CartHeader.PurchaseAmount)</p>
+						</div>
+					}
+					else
+					{
+						<div id="subtotal">
+							<p>Subtotal: </p><p>@string.Format("{0:c}",(Model.CartHeader.PurchaseAmount + Model.CartHeader.DiscountAmount))</p>
+						</div>
+						<div id="discount">
+							<p>Desconto: </p> <p>- @string.Format("{0:c}",Model.CartHeader.DiscountAmount)</p>
+						</div>
+						<div id="total">
+							<p>Total: </p> <p>@string.Format("{0:c}",Model.CartHeader.PurchaseAmount)</p>
+						</div>
+					}
 					<a asp-action="Checkout" class="btn btn-success form-control">
 						<span>Checkout</span>
 					</a>

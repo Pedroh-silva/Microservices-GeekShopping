@@ -1,0 +1,120 @@
+﻿#main {
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+    flex-wrap:wrap;
+}
+
+.box {
+    background-color: #fff;
+    padding: 10px;
+    border-radius: 10px;
+    max-width:420px;
+}
+
+#Name {
+    display: flex;
+    gap:20px;
+    flex-wrap:wrap;
+    margin-bottom: 30px;
+    margin-top: 30px;
+}
+
+.email, .creditCard {
+    max-width: 100% !important;
+}
+
+.creditCard {
+    margin-top: 30px;
+}
+
+#expiryCVV {
+    margin-top: 30px;
+    display: flex;
+    flex-wrap:wrap;
+    gap: 20px;
+}
+/*From uiverse.io*/
+.inputGroup {
+    font-family: 'Segoe UI', sans-serif;
+    max-width: 190px;
+    position: relative;
+}
+
+    .inputGroup input {
+        font-size: 100%;
+        padding: 0.8em;
+        outline: none;
+        border: 2px solid rgb(200, 200, 200);
+        background-color: transparent;
+        border-radius: 20px;
+        width: 100%;
+    }
+
+    .inputGroup label {
+        font-size: 100%;
+        position: absolute;
+        left: 0;
+        pointer-events: none;
+        color: rgb(100, 100, 100);
+        transform: translateY(-50%) scale(.9);
+        margin: 0em;
+        margin-left: 1.3em;
+        padding: 0.4em;
+        background-color: #fff;
+    }
+
+    .inputGroup :is(input:focus, input:valid) {
+        border-color: rgb(197, 207, 172);
+    }
+
+input::placeholder {
+    color: #e1e1e1;
+}
+
+.orderSummary {
+    height: fit-content;
+}
+
+.imgWrapper {
+    width: 55px;
+    height: 55px;
+}
+.product:nth-of-type(n+2) .imgWrapper {
+    display: flex;
+    align-items: center;
+}
+.product {
+    display: flex;
+    border-bottom: 1px solid #e1e1e1;
+    justify-content: space-between;
+}
+
+#imgAndTitle {
+    display: flex;
+}
+
+#productTitle {
+    max-width: 140px;
+}
+
+#productPrice {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+#subtotal, #discount, #total {
+    display: flex;
+    justify-content: space-between;
+}
+#subtotal p, #discount p, #total p{
+    margin-bottom:5px;
+}
+#subtotal{
+    padding-top:5px;
+}
+#total p:last-child{
+    border-top:1px solid #e1e1e1;
+    font-size:17px;
+    font-weight:500;
+}

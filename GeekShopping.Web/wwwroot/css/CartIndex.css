@@ -141,3 +141,62 @@
 .empty-cart a{
     width:50%;
 }
+#couponAndButton{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:5px;
+}
+.apply {
+    font-size:19px;
+    background:none;
+    border-radius: 3px;
+    padding: 5px;
+    border: none;
+    color: #198754;
+}
+#applyCoupon:hover {
+    color: #157347;
+}
+#removeCoupon {
+    color: #a04545;
+}
+    #removeCoupon:hover {
+        color: #7b2f2f;
+    }
+#totalLayout p{
+    margin: 0;
+}
+#subtotal, #discount, #total {
+    display: flex;
+    justify-content: space-between;
+    padding-top:1rem;
+    padding-bottom:1rem;
+}
+    #discount{
+        border-top:1px solid #e5e5e5;
+        border-bottom:1px solid #e5e5e5;
+    }
+    #total{
+        font-weight:500;
+    }
+#total p:last-child{
+    font-size:20px;
+}
+#CartHeader_CouponCode {
+    height: 35px;
+}
+.Coupon-loader{
+    display:none;
+    animation: is-rotating 1s infinite;
+    border: 2px solid #e5e5e5;
+    border-radius:50%;
+    border-top-color:#51d4db;
+    height:15px;
+    width:15px;
+}
+@keyframes is-rotating{
+    to{
+        transform:rotate(1turn);
+    }
+}
