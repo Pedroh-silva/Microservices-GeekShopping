@@ -30,6 +30,25 @@ namespace GeekShopping.Web.Controllers
 			return View(await FindUserCart());
 		}
 		[HttpPost]
+		[ValidateAntiForgeryToken]
+		public async Task<IActionResult> Checkout(CartViewModel model)
+		{
+			var token = await HttpContext.GetTokenAsync("access_token");
+
+			var response = await _cartService.Checkout(model.CartHeader, token);
+			if (response != null)
+			{
+				return RedirectToAction(nameof(Confirmation));
+			}
+			return View(model);
+		}
+		[HttpGet]
+		[Authorize]
+		public async Task<IActionResult> Confirmation()
+		{
+			return View();
+		}
+		[HttpPost]
 		public async Task<IActionResult> ApplyCoupon(CartViewModel model)
 		{
 			var token = await HttpContext.GetTokenAsync("access_token");
