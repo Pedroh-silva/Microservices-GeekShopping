@@ -19,7 +19,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GeekShopping.CouponAPI", "G
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Integration", "Integration", "{678D788A-9383-4CD7-A4EC-66AB5A863753}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GeekShopping.MessageBus", "GeekShopping.MessageBus\GeekShopping.MessageBus.csproj", "{C0CC7029-6393-4012-BB6B-F7F202E9C669}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GeekShopping.MessageBus", "GeekShopping.MessageBus\GeekShopping.MessageBus.csproj", "{C0CC7029-6393-4012-BB6B-F7F202E9C669}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GeekShopping.OrderAPI", "GeekShopping.OrderAPI\GeekShopping.OrderAPI.csproj", "{A0373E51-33E2-4C0A-A5E4-DA2F74A36DA1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -51,6 +53,10 @@ Global
 		{C0CC7029-6393-4012-BB6B-F7F202E9C669}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C0CC7029-6393-4012-BB6B-F7F202E9C669}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C0CC7029-6393-4012-BB6B-F7F202E9C669}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A0373E51-33E2-4C0A-A5E4-DA2F74A36DA1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A0373E51-33E2-4C0A-A5E4-DA2F74A36DA1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A0373E51-33E2-4C0A-A5E4-DA2F74A36DA1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A0373E51-33E2-4C0A-A5E4-DA2F74A36DA1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -62,6 +68,7 @@ Global
 		{E0021367-BDA4-4373-A632-0AF5564E68D2} = {D346B503-785A-40EB-A095-DA7350904223}
 		{10E1CFCD-9468-478D-93AE-A999D299DA55} = {D346B503-785A-40EB-A095-DA7350904223}
 		{C0CC7029-6393-4012-BB6B-F7F202E9C669} = {678D788A-9383-4CD7-A4EC-66AB5A863753}
+		{A0373E51-33E2-4C0A-A5E4-DA2F74A36DA1} = {D346B503-785A-40EB-A095-DA7350904223}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {92C56D76-B7C6-4865-BBFA-920320A014C2}
