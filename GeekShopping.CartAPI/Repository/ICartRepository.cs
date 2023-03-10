@@ -7,7 +7,7 @@ namespace GeekShopping.CartAPI.Repository
         Task<CartDTO> FindCartByUserId(string UserId);
         Task<CartDTO> SaveOrUpdateCart(CartDTO cart);
         Task<bool> RemoveFromCart(int cartDetailsId);
-        Task<bool> ApllyCoupon(string UserId,string couponCode);
+        Task<bool> ApplyCoupon(string UserId,string couponCode);
         Task<bool> RemoveCoupon(string UserId);
         Task<bool> ClearCart(string UserId);
         Task<bool> UpdateQuantity(CartDetailDTO dto);

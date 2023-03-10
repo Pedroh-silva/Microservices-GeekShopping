@@ -16,7 +16,7 @@ namespace GeekShopping.CartAPI.Repository
 			_context = context;
 			_mapper = mapper;
 		}
-		public async Task<bool> ApllyCoupon(string UserId, string couponCode)
+		public async Task<bool> ApplyCoupon(string UserId, string couponCode)
 		{
 			var header = await _context.CartHeaders
 					   .FirstOrDefaultAsync(c => c.UserId == UserId);
