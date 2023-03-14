@@ -1,10 +1,10 @@
 ﻿using System.Text;
 using System.Text.Json;
-using GeekShopping.CartAPI.Messages;
 using GeekShopping.MessageBus;
+using GeekShopping.OrderAPI.Messages;
 using RabbitMQ.Client;
 
-namespace GeekShopping.CartAPI.RabbitMQSender
+namespace GeekShopping.OrderAPI.RabbitMQSender
 {
 	public class RabbitMQMessageSender : IRabbitMQMessageSender
 	{
@@ -47,7 +47,7 @@ namespace GeekShopping.CartAPI.RabbitMQSender
 			{
 				WriteIndented = true
 			};
-			var json = JsonSerializer.Serialize<CheckoutHeaderDTO>((CheckoutHeaderDTO)message, options);
+			var json = JsonSerializer.Serialize<PaymentDTO>((PaymentDTO)message, options);
 			var body = Encoding.UTF8.GetBytes(json);
 			return body;
 		}

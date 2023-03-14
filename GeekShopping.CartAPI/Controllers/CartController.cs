@@ -78,8 +78,9 @@ namespace GeekShopping.CartAPI.Controllers
             }
             dto.CartDetails = cart.CartDetails;
             dto.DateTime = DateTime.UtcNow;
-            //RabbitMQ logic here
-            //_rabbitMQMessageSender.SendMessage(dto, "checkoutqueue");
+            _rabbitMQMessageSender.SendMessage(dto, "checkoutqueue");
+
+            await _cartRepository.ClearCart(dto.UserId);
 
 			return Ok(dto);
 		}
