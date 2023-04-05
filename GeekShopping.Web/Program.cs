@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Authentication.OpenIdConnect;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-builder.Services.AddControllersWithViews();
+builder.Services.AddControllersWithViews().AddDataAnnotationsLocalization();
 builder.Services.AddAuthentication(options =>
 {
     options.DefaultScheme = "Cookies";
@@ -16,7 +16,7 @@ builder.Services.AddAuthentication(options =>
     .AddCookie("Cookies",c=> c.ExpireTimeSpan = TimeSpan.FromMinutes(10))
     .AddOpenIdConnect("oidc",options =>
     {
-        options.Authority = /*TODO: Verificar se não der certo*/builder.Configuration["ServicesUrls:IdentityServer"];
+        options.Authority = builder.Configuration["ServicesUrls:IdentityServer"];
         options.GetClaimsFromUserInfoEndpoint = true;
         options.ClientId = "geek_shopping";
         options.ClientSecret = "my_super_secret";

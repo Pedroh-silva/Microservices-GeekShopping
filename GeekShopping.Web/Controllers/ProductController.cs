@@ -32,18 +32,21 @@ namespace GeekShopping.Web.Controllers
         [ValidateAntiForgeryToken]
 		public async Task<IActionResult> ProductCreate(ProductViewModel viewModel)
 		{
-			decimal price;
-			decimal.TryParse(viewModel.Price, out price);
+			
 			if (ModelState.IsValid)
             {
-                var token = await HttpContext.GetTokenAsync("access_token");
+				if (string.IsNullOrEmpty(viewModel.Price)) return View(viewModel);
+
+				decimal price;
+				decimal.TryParse(viewModel.Price, out price);
+				var token = await HttpContext.GetTokenAsync("access_token");
                 ProductModel model = new ProductModel()
 				{
 					Name = viewModel.Name,
 					Price = price,
 					CategoryName = viewModel.CategoryName,
 					Description = viewModel.Description ?? "",
-					ImageURL = viewModel.ImageURL,
+					ImageURL = viewModel.ImageURL
 				};
 				var response = await _productService.CreateProduct(model, token);
                 if(response != null) return RedirectToAction(nameof(ProductIndex));

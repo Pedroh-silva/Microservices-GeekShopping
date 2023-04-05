@@ -7,6 +7,7 @@
 @if (Model != null && Model.CartDetails.Count() > 0)
 {
 	<form method="post">
+		@Html.AntiForgeryToken()
 		<input asp-for="CartHeader.UserId" hidden />
 		<input asp-for="CartHeader.Id" hidden />
 		<input asp-for="CartHeader.CouponCode" hidden />
@@ -16,6 +17,7 @@
 			<div class="box">
 				<h4>Informações do cliente</h4>
 				<hr>
+				@Html.ValidationSummary(false, "", new { @class = "text-danger validation-summary-errors" })
 				<div id="Name">
 					<div>
 						<div class="inputGroup">
@@ -109,5 +111,6 @@
 	@section Scripts{
 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.0/jquery.mask.js"></script>
 	<script src="@Url.Content("~/js/Checkout.js")" type="text/javascript"></script>
+		<partial name="_ValidationScriptsPartial"> 
 	}
 }

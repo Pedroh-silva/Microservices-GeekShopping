@@ -1,17 +1,21 @@
-﻿<ul class="navbar-nav">
+﻿<link rel="stylesheet" href="~/css/_LoginPartial.css"/>
+<ul class="navbar-nav">
 	@if (User.Identity.IsAuthenticated)
 	{
 		<li class="nav-item">
-			<a class="nav-link" >Hello @User.Identity.Name</a>
+			<a class="nav-link" style="color:#ff6a00!important" asp-area="" asp-controller="Product" asp-action="ProductIndex">Product</a>
 		</li>
-		<li class="nav-item">
-			<a class="nav-link" asp-action="Logout" asp-controller="Home">Logout</a>
+		<li class="nav-item" style="font-size:14px;">
+			<a class="nav-link" asp-action="Logout" asp-controller="Home">Logout <i class="fa fa-sign-out"></i></a>
+		</li>
+		<li class="nav-item" style="font-size:12px;">
+			<a class="nav-link text-dark login-name">@User.Identity.Name</a>
 		</li>
 	}
 	else
 	{
 		<li class="nav-item">
-			<a class="nav-link" asp-action="Login" asp-controller="Home">Login</a>
+			<a class="nav-link" style="color:#ff6a00!important" asp-action="Login" asp-controller="Home">Login <i class="fa fa-sign-in"></i></a>
 		</li>
 	}
 </ul>

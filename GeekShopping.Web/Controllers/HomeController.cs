@@ -60,7 +60,9 @@ namespace GeekShopping.Web.Controllers
             var response = await _cartService.AddItemToCart(cart, token);
             if(response != null)
             {
-                return RedirectToAction(nameof(Index));
+				var mensagem = $"{cartDetail.Product.Name} {cartDetail.Count}x adicionado ao carrinho";
+				TempData["MensagemSucesso"] = mensagem;
+				return RedirectToAction(nameof(Index));
             }
             return View(model);
         }

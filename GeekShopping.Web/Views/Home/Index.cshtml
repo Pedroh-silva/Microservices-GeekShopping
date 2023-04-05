@@ -1,13 +1,54 @@
 ﻿@model IEnumerable<GeekShopping.Web.Models.ProductModel>
 <link rel="stylesheet" href="~/css/HomeIndex.css" />
-<form>
+<div class="load-wrapper">
+	<div class="spinner"></div>
+</div>
+<div class="titlePage">
+	<h4>- Bem-vindo ao <span style="color:#FF6A00">GeekShopping</span> -</h4>
+	@if (User.Identity.IsAuthenticated)
+	{
+		<h5>Olá, @User.Identity.Name</h5>
+	}
+	<h6>Sua vida nerd em um só lugar.</h6>
+</div>
 
+@if (TempData["MensagemSucesso"]!= null)
+{
+	<div class="modal" id="successModal">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modalHeader">
+					<div id="timer">
+						<div id="bar"></div>
+					</div>
+					<h5 class="modal-title" id="successModalLabel">Sucesso!</h5>
+				</div>
+				<div class="modal-body">
+					<p id="successMessage">@TempData["MensagemSucesso"]</p>
+				</div>
+			</div>
+		</div>
+	</div>
+}
+<div id="search-n-result">
+	<div class="search-container">
+		<div>
+			<img width="15" src="/Images/magnifier-svgrepo-com.svg" />
+			<input id="search-input" type="text" placeholder="Pesquisar produto">
+		</div>
+	</div>
+	<div id="searchResultCount">
+		<p id="totalProductsSearched"></p>
+	</div>
+</div>
+<form>
+	@Html.AntiForgeryToken()
 	<section class="card-row">
 		@foreach (var product in Model)
 		{
-			<div class="card">
+			<div itemid="@product.Id" class="card">
 				<div class="card-img">
-					<img style="width:90%" src="@product.ImageURL" />
+					<img class="productImage" style="width:90%" loading="lazy" src="@product.ImageURL" />
 				</div>
 				<div class="card-productName">
 					<h4>@product.Name</h4>
@@ -29,3 +70,6 @@
 		}
 	</section>
 </form>
+@section Scripts{
+	<script src="@Url.Content("~/js/HomeIndex.js")" type="text/javascript"></script>
+	}

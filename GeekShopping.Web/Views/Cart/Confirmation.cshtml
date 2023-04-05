@@ -1,5 +1,26 @@
-﻿<div class="text-center">
-    <h1 class="text-info pt-4">Parabéns! você está um passo mais perto de ter uma vida nerd!.</h1>
+﻿<style>
+    .text-center {
+        -webkit-box-shadow: 0px 2px 5px 0px rgba(0,0,0,0.75);
+        -moz-box-shadow: 0px 2px 5px 0px rgba(0,0,0,0.75);
+        box-shadow: 0px 2px 5px 0px rgba(0,0,0,0.75);
+        background-color:#ffff;
+        border-radius:20px;
+        padding:10px;
+    }
+    h1 {
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    }
+    p{
+        font-weight:bold;
+    }
+
+    #orderimg{
+        border-radius:50px;
+    }
+</style>
+<div class="text-center">
+    <h1 class="text-success pt-4">Parabéns! você está um passo mais perto de ter uma vida nerd!.</h1>
     <p class="pb-3">Nós recebemos seu pedido, o pagamento será processado em breve!</p>
-    <img src="/images/order.png" style="width: 80%" />
+    <p><a asp-action="Index" asp-controller="Home" class="btn  btn-success">Voltar para Home</a></p>
+    <img id="orderimg" src="/images/order.png" style="width: 80%" />
 </div>

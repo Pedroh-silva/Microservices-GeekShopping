@@ -63,7 +63,7 @@ namespace GeekShopping.Web.Services
 			if (response.IsSuccessStatusCode) return await response.ReadContentAs<bool>();
 			else throw new Exception("Something went wrong calling API");
 		}
-        public async Task<bool> ClearCart(string userId, string token)
+        public Task<bool> ClearCart(string userId, string token)
         {
             throw new NotImplementedException();
         }

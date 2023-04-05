@@ -1,59 +1,81 @@
 ﻿@model GeekShopping.Web.Models.ProductModel
+<link rel="stylesheet" href="~/css/HomeDetails.css" />
+
+<div id="modal-background">
+	<div id="modal">
+		<button type="button" class="btn" id="close-modal"><i class="fa fa-close"></i></button>
+		<br />
+		<h2>Selecione a quantidade</h2>
+		<div class="modal-units">
+			<div id="1"> 1 unidade</div>
+			<div id="2"> 2 unidades</div>
+			<div id="3"> 3 unidades</div>
+			<div id="4"> 4 unidades</div>
+			<div id="5"> 5 unidades</div>
+		</div>
+		<hr />
+		<span>Quantidade personalizada:</span>
+		<input id="quantityUpdate" />
+		<button style="width:100%" type="button" id="update-quantity" class="btn btn-success">Selecionar</button>
+	</div>
+</div>
 
 <form method="post">
-    @Html.AntiForgeryToken()
-    <input asp-for="Id" hidden />
-    <div class="pt-4">
-        <div class="card container" style="border:1px solid #808080;">
-            <div class="card-header text-light row" style="border-radius: 0px;">
-                <div class="col-12 col-md-9">
-                    <h1 class="text-dark">@Model.Name</h1>
-                </div>
-                <div class="col-12 col-md-3 text-end">
-                    <h1 class="text-warning">@((Model.Price).ToString("c"))</h1>
-                </div>
-            </div>
-            <div class="card-body">
-                <div class="container rounded p-2">
-                    <div class="row">
-                        <div class="col-12 col-lg-4 p-1 text-center">
-                            <img src="@Model.ImageURL" style="border-radius: 35px;" width="100%" class="rounded" />
-                        </div>
-                        <div class="col-12 col-lg-8">
-                            <div class="row pl-3">
-                                <div class="col-12">
-                                    <span class="badge badge-primary text-success p-3 border">
-                                        @Model.CategoryName
-                                    </span>
-                                    <h3 class="text-success"></h3>
-                                    <p class="text-secondary">@Html.Raw(Model.Description)</p>
-                                </div>
-                            </div>
-                            <div class="row px-4">
-                                <input min="1" asp-for="Count" class="form-control" />
-                                <span asp-validation-for="Count" class="text-danger"></span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="card-footer row">
-                <div class="col-12 col-md-6 pb-1">
-                    <a asp-action="Index" class="btn btn-success btn-square form-control btn-lg" style="height:50px;">
-                        Back to List
-                    </a>
-                </div>
+	@Html.AntiForgeryToken()
+	<input asp-for="Id" hidden />
+	<div class="box">
+		<div>
+			<div class="box-Header">
+				<div>
+					<h1 class="text-dark">@Model.Name</h1>
+				</div>
+			</div>
+			<div class="box-body-1">
+				<div class="box-body-2">
+					<div id="model-img">
+						<img src="@Model.ImageURL" width="100%" />
+					</div>
+					<div style="margin-top:20px;">
+						<div>
+							<span class="category-badge">
+								@Model.CategoryName
+							</span>
+							<p></p>
+							<h1 class="text-success">@((Model.Price).ToString("c"))</h1>
+							<h3>Sobre o produto</h3>
+							<p class="text-secondary box-description">@Html.Raw(Model.Description)</p>
+						</div>
+					</div>
+				</div>
+				<div class="box-count" id="open-modal">
+					<span>Quantidade: </span>
+					<span id="model-count"> 1</span>
+					<span> Un.</span>
+					<input hidden min="1" asp-for="Count" />
+					<i style="float:right; font-size:20px" class="fa fa-angle-right text-primary"></i>
+					<span asp-validation-for="Count" class="text-danger"></span>
+				</div>
+			</div>
 
-                <div class="col-12 col-md-6">
-                    <button type="submit" class="btn-primary form-control btn-lg" style="height:50px;">
-                        Add to Cart
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div>
+			<div class="box-actions">
+				<div>
+					<button type="submit" class="btn-primary form-control btn-lg" style="height:50px;">
+						Adicionar ao carrinho
+					</button>
+
+				</div>
+				<br />
+				<div>
+					<a asp-action="Index" style="width:30%" id="back-to-list" class="btn btn-success">
+						Voltar a lista
+					</a>
+				</div>
+			</div>
+		</div>
+	</div>
 </form>
 
 @section Scripts {
-    <partial name="_ValidationScriptsPartial" />
+	<script src="@Url.Content("~/js/HomeDetails.js")" type="text/javascript"></script>
+	<partial name="_ValidationScriptsPartial" />
 }

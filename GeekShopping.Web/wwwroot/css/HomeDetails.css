@@ -1,0 +1,143 @@
+form {
+    display: flex;
+    justify-content: center;
+    padding-top: 20px;
+}
+
+.box {
+    background-color: #ffff;
+    border-radius: 15px;
+    max-width: 600px;
+    width: 100%;
+    box-shadow: 0px 0px 38px -1px rgba(0,0,0,0.75);
+    margin-bottom:20px;
+}
+
+.box-Header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.box-body-1 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.box-body-2 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    padding: 0 15px 0 15px;
+}
+
+#model-img {
+    max-width: 450px;
+}
+
+.category-badge {
+    border: 1px solid #41414134;
+    border-radius: 10px;
+    padding: 10px;
+    background-color: #41414113;
+    color: teal;
+}
+
+.box-description {
+    padding-top: 10px;
+    max-width: 590px;
+}
+
+.box-count {
+    cursor: pointer;
+    padding: 10px;
+    background-color: #4141412e;
+    border-radius: 5px;
+    width: 90%;
+    text-align: center;
+    margin-bottom: 10px;
+}
+    .box-count:hover {
+        background-color: #41414156;
+    }
+#model-count {
+    font-weight: 500;
+}
+/*-----------------------------------------------------------------*/
+#modal-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: none;
+    z-index: 99;
+}
+
+#modal {
+    position: absolute;
+    bottom: -100%;
+    left: 50%;
+    transform: translate(-50%, 0);
+    max-width: 450px;
+    width: 100%;
+    background-color: #fff;
+    padding: 0 20px 30px 20px;
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
+}
+
+.modal-units {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+}
+
+    .modal-units div {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 50px;
+        cursor: pointer;
+        margin: 5px;
+        font-weight: 500;
+        width: 100%;
+        background-color: #4141412e;
+        border-radius: 5px;
+    }
+
+        .modal-units div:hover {
+            background-color: #41414156;
+        }
+
+#close-modal {
+    float: right;
+}
+
+    #close-modal:hover {
+        color: #808080;
+    }
+
+#quantityUpdate {
+    border-radius: 5px;
+    border: 1px solid teal;
+    width: 50px;
+}
+
+    #quantityUpdate:focus {
+        outline: 1px solid teal;
+    }
+
+#update-quantity {
+    margin-top: 10px;
+}
+
+.box-actions {
+    padding:20px;
+}
+#back-to-list{
+    min-width:130px;
+}

@@ -20,6 +20,17 @@ body {
 nav {
     filter:drop-shadow(0 0 15px #656565);
 }
+.nav-link {
+    font-size: 18px;
+    font-weight: 500;
+    transition: all 0.1s;
+}
+    .nav-link:hover {
+        padding-left:30px;
+        transform: scale(1.1);
+        color: #656565;
+    }
+
 header {
     margin-bottom: 30px;
 }

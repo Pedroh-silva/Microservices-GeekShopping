@@ -1,4 +1,18 @@
-﻿$(".RemoveProduct").on('click', function () {
+﻿var tempoLimite = 3000;
+
+window.addEventListener('load', function () {
+    
+    clearTimeout(temporizador);
+    $(".load-wrapper").css('display', 'none');
+});
+
+var temporizador = setTimeout(function () {
+    
+    $(".load-wrapper").css('display', 'block');
+}, tempoLimite);
+
+
+$(".RemoveProduct").on('click', function () {
     var id = $(this).attr('itemid');
     $.ajax({
         url: '/Cart/Remove/' + id,
@@ -101,8 +115,18 @@ function isValidNumber(value) {
 $(".unit").on('click', function () {
     $("#productId").val($(this).attr('itemid'));
     $("#productCurrentQuantity").val($(this).find("#currentQuantity").val())
-    $(".Fade").css('display', 'flex');
+    $(".Fade").fadeIn().css('display', 'flex');
+    $(".Modal").animate({ top: "50%" }, 500);
 })
 $("#closeModal").on('click', function () {
-    $(".Fade").hide();
+    CloseCartModal();
 })
+$(".Fade").click(function (e) {
+    if (e.target == this) {
+        CloseCartModal();
+    }
+});
+function CloseCartModal() {
+    $(".Fade").fadeOut()
+    $(".Modal").animate({ top: "-100%" }, 500);
+}
