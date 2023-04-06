@@ -15,6 +15,8 @@ This project consists of a microservices architecture based on REST APIs for com
 
 ## 📄 About
 
+> Para ler este arquivo em português, acesse [README-pt-br.md](./README-pt-br.md).
+
 In this project, my main goal was to learn about REST communication in microservices, best practices such as design patterns, creating a user-friendly interface, integrating the project with RabbitMQ running in a Docker container for messaging, and understanding user authentication and authorization. I believe that this project has given me access to and improvement of various important skills for a developer, and I was able to improve my knowledge in already known technologies.
 
 Overall, this project has been a great opportunity for me to learn and grow as a developer, and I hope to continue to apply the knowledge and skills I've gained to future projects. If you have any questions or feedback, please don't hesitate to reach out to me.
